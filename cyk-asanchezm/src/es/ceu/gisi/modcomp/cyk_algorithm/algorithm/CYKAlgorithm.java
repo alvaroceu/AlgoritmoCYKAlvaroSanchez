@@ -2,6 +2,7 @@ package es.ceu.gisi.modcomp.cyk_algorithm.algorithm;
 
 import es.ceu.gisi.modcomp.cyk_algorithm.algorithm.exceptions.CYKAlgorithmException;
 import es.ceu.gisi.modcomp.cyk_algorithm.algorithm.interfaces.CYKAlgorithmInterface;
+import java.util.ArrayList;
 
 /**
  * Esta clase contiene la implementación de la interfaz CYKAlgorithmInterface
@@ -12,6 +13,8 @@ import es.ceu.gisi.modcomp.cyk_algorithm.algorithm.interfaces.CYKAlgorithmInterf
  */
 public class CYKAlgorithm implements CYKAlgorithmInterface {
 
+    private ArrayList<Character> ConjuntoNoTerminales;
+
     @Override
     /**
      * Método que añade los elementos no terminales de la gramática.
@@ -20,7 +23,11 @@ public class CYKAlgorithm implements CYKAlgorithmInterface {
      * @throws CYKAlgorithmException Si el elemento no es una letra mayúscula.
      */
     public void addNonTerminal(char nonterminal) throws CYKAlgorithmException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (Character.isUpperCase(nonterminal)) {
+            this.ConjuntoNoTerminales.add(nonterminal);
+        } else {
+            throw new CYKAlgorithmException();
+        }
     }
 
     @Override
