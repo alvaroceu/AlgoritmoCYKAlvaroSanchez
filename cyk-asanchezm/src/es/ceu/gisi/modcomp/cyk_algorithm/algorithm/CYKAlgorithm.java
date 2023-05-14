@@ -3,6 +3,7 @@ package es.ceu.gisi.modcomp.cyk_algorithm.algorithm;
 import es.ceu.gisi.modcomp.cyk_algorithm.algorithm.exceptions.CYKAlgorithmException;
 import es.ceu.gisi.modcomp.cyk_algorithm.algorithm.interfaces.CYKAlgorithmInterface;
 import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * Esta clase contiene la implementación de la interfaz CYKAlgorithmInterface
@@ -16,6 +17,7 @@ public class CYKAlgorithm implements CYKAlgorithmInterface {
     private ArrayList<Character> conjuntoNoTerminales;
     private ArrayList<Character> conjuntoTerminales;
     private char axioma;
+    private Map<Character, ArrayList<String>> producciones;
 
     @Override
     /**
@@ -78,7 +80,38 @@ public class CYKAlgorithm implements CYKAlgorithmInterface {
      * previamente.
      */
     public void addProduction(char nonterminal, String production) throws CYKAlgorithmException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (!this.conjuntoNoTerminales.contains(nonterminal)) {
+            throw new CYKAlgorithmException();
+        }
+        if (production.length() == 1) {
+
+            if (!this.conjuntoTerminales.contains(production.charAt(1))) {
+                throw new CYKAlgorithmException();
+            }
+            if (this.producciones.containsKey(nonterminal)) {
+                this.producciones.get(nonterminal).add(production);
+            } else {
+                this.producciones.put(nonterminal, new ArrayList());
+                this.producciones.get(nonterminal).add(production);
+            }
+
+        } else if (production.length() == 2) {
+
+            char letra1 = production.charAt(1);
+            char letra2 = production.charAt(2);
+            if ((!this.conjuntoNoTerminales.contains(letra1)) || (!this.conjuntoNoTerminales.contains(letra2))) {
+                throw new CYKAlgorithmException();
+            }
+            if (this.producciones.containsKey(nonterminal)) {
+                this.producciones.get(nonterminal).add(production);
+            } else {
+                this.producciones.put(nonterminal, new ArrayList());
+                this.producciones.get(nonterminal).add(production);
+            }
+
+        } else {
+            throw new CYKAlgorithmException();
+        }
     }
 
     @Override
