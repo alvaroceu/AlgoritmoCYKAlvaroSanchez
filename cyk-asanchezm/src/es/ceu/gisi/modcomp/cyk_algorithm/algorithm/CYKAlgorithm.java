@@ -177,7 +177,19 @@ public class CYKAlgorithm implements CYKAlgorithmInterface {
      * salida podría ser: "S::=AB|BC".
      */
     public String getProductions(char nonterminal) {
-        throw new UnsupportedOperationException("Not supported yet.");
+
+        String cadenaProducciones = "";
+        int indice = 0;
+        for (String produccion : this.producciones.get(nonterminal)) {
+            cadenaProducciones = cadenaProducciones + produccion;
+
+            indice++;
+            if (indice != this.producciones.get(nonterminal).size()) {
+                cadenaProducciones = cadenaProducciones + "|";
+            }
+        }
+
+        return nonterminal + "::=" + cadenaProducciones;
     }
 
     @Override
