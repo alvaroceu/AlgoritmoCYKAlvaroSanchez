@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class CYKAlgorithm implements CYKAlgorithmInterface {
 
     private ArrayList<Character> ConjuntoNoTerminales;
+    private ArrayList<Character> ConjuntoTerminales;
 
     @Override
     /**
@@ -38,7 +39,11 @@ public class CYKAlgorithm implements CYKAlgorithmInterface {
      * @throws CYKAlgorithmException Si el elemento no es una letra minúscula.
      */
     public void addTerminal(char terminal) throws CYKAlgorithmException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (Character.isLowerCase(terminal)) {
+            this.ConjuntoTerminales.add(terminal);
+        } else {
+            throw new CYKAlgorithmException();
+        }
     }
 
     @Override
