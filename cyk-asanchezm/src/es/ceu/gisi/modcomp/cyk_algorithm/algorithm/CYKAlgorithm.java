@@ -13,9 +13,9 @@ import java.util.ArrayList;
  */
 public class CYKAlgorithm implements CYKAlgorithmInterface {
 
-    private ArrayList<Character> ConjuntoNoTerminales;
-    private ArrayList<Character> ConjuntoTerminales;
-    private char Axioma;
+    private ArrayList<Character> conjuntoNoTerminales;
+    private ArrayList<Character> conjuntoTerminales;
+    private char axioma;
 
     @Override
     /**
@@ -26,7 +26,7 @@ public class CYKAlgorithm implements CYKAlgorithmInterface {
      */
     public void addNonTerminal(char nonterminal) throws CYKAlgorithmException {
         if (Character.isUpperCase(nonterminal)) {
-            this.ConjuntoNoTerminales.add(nonterminal);
+            this.conjuntoNoTerminales.add(nonterminal);
         } else {
             throw new CYKAlgorithmException();
         }
@@ -41,7 +41,7 @@ public class CYKAlgorithm implements CYKAlgorithmInterface {
      */
     public void addTerminal(char terminal) throws CYKAlgorithmException {
         if (Character.isLowerCase(terminal)) {
-            this.ConjuntoTerminales.add(terminal);
+            this.conjuntoTerminales.add(terminal);
         } else {
             throw new CYKAlgorithmException();
         }
@@ -58,8 +58,8 @@ public class CYKAlgorithm implements CYKAlgorithmInterface {
      */
     public void setStartSymbol(char nonterminal) throws CYKAlgorithmException {
 
-        if (ConjuntoNoTerminales.contains(nonterminal)) {
-            this.Axioma = nonterminal;
+        if (conjuntoNoTerminales.contains(nonterminal)) {
+            this.axioma = nonterminal;
         } else {
             throw new CYKAlgorithmException();
         }
