@@ -200,7 +200,12 @@ public class CYKAlgorithm implements CYKAlgorithmInterface {
      * elementos no terminales.
      */
     public String getGrammar() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        String gramatica = "";
+        for (char noTerminal : this.conjuntoTerminales) {
+            gramatica = gramatica + getProductions(noTerminal) + "\n";
+        }
+
+        return gramatica;
     }
 
 }
