@@ -16,7 +16,7 @@ public class CYKAlgorithm implements CYKAlgorithmInterface {
 
     private ArrayList<Character> conjuntoNoTerminales;
     private ArrayList<Character> conjuntoTerminales;
-    private char axioma;
+    private Character axioma;
     private Map<Character, ArrayList<String>> producciones;
 
     @Override
@@ -158,7 +158,10 @@ public class CYKAlgorithm implements CYKAlgorithmInterface {
      * dejando el algoritmo listo para volver a insertar una gramática nueva.
      */
     public void removeGrammar() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.conjuntoTerminales.clear();
+        this.conjuntoNoTerminales.clear();
+        this.producciones.clear();
+        this.axioma = null;
     }
 
     @Override
