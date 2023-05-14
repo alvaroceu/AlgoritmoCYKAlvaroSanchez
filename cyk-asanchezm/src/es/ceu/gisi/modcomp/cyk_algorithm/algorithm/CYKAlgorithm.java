@@ -15,6 +15,7 @@ public class CYKAlgorithm implements CYKAlgorithmInterface {
 
     private ArrayList<Character> ConjuntoNoTerminales;
     private ArrayList<Character> ConjuntoTerminales;
+    private char Axioma;
 
     @Override
     /**
@@ -56,7 +57,13 @@ public class CYKAlgorithm implements CYKAlgorithmInterface {
      * conjunto de elementos no terminales.
      */
     public void setStartSymbol(char nonterminal) throws CYKAlgorithmException {
-        throw new UnsupportedOperationException("Not supported yet.");
+
+        if (ConjuntoNoTerminales.contains(nonterminal)) {
+            this.Axioma = nonterminal;
+        } else {
+            throw new CYKAlgorithmException();
+        }
+
     }
 
     @Override
