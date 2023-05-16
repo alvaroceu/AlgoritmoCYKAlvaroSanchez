@@ -61,6 +61,11 @@ public class CYKAlgorithm implements CYKAlgorithmInterface {
      */
     public void addTerminal(char terminal) throws CYKAlgorithmException {
         if (Character.isLowerCase(terminal)) {
+
+            if (this.conjuntoTerminales.contains(terminal)) {
+                throw new CYKAlgorithmException();
+            }
+
             this.conjuntoTerminales.add(terminal);
         } else {
             throw new CYKAlgorithmException();
