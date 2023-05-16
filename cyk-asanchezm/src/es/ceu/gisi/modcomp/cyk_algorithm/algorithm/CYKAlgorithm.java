@@ -198,17 +198,23 @@ public class CYKAlgorithm implements CYKAlgorithmInterface {
     public String getProductions(char nonterminal) {
 
         String cadenaProducciones = "";
+        String stringFinal = "";
         int indice = 0;
-        for (String produccion : this.producciones.get(nonterminal)) {
-            cadenaProducciones = cadenaProducciones + produccion;
 
-            indice++;
-            if (indice != this.producciones.get(nonterminal).size()) {
-                cadenaProducciones = cadenaProducciones + "|";
+        if (this.producciones.get(nonterminal) != null) {
+            for (String produccion : this.producciones.get(nonterminal)) {
+                cadenaProducciones = cadenaProducciones + produccion;
+
+                indice++;
+                if (indice != this.producciones.get(nonterminal).size()) {
+                    cadenaProducciones = cadenaProducciones + "|";
+                }
             }
+
+            stringFinal = nonterminal + "::=" + cadenaProducciones;
         }
 
-        return nonterminal + "::=" + cadenaProducciones;
+        return stringFinal;
     }
 
     @Override
