@@ -39,7 +39,13 @@ public class CYKAlgorithm implements CYKAlgorithmInterface {
      * @throws CYKAlgorithmException Si el elemento no es una letra mayúscula.
      */
     public void addNonTerminal(char nonterminal) throws CYKAlgorithmException {
+
         if (Character.isUpperCase(nonterminal)) {
+
+            if (this.conjuntoNoTerminales.contains(nonterminal)) {
+                throw new CYKAlgorithmException();
+            }
+
             this.conjuntoNoTerminales.add(nonterminal);
         } else {
             throw new CYKAlgorithmException();
