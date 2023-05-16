@@ -174,19 +174,56 @@ public class CYKAlgorithm implements CYKAlgorithmInterface {
             }
         }
 
+        Boolean resultado = false;
         int n = word.length();
-        for (int i = 1; i <= n; i++) {
+        String[][] tabla = new String[n][n];
+        String casilla = "";
+        for (int i = 0; i < n; i++) {
 
+            for (char noTerminal : this.conjuntoNoTerminales) {
+                String caracterPalabra = word.charAt(i) + "";
+                if (this.producciones.get(noTerminal).contains(caracterPalabra)) {
+                    casilla = casilla + noTerminal;
+                }
+            }
+
+            tabla[i][0] = casilla;
+            casilla = "";
         }
 
-        for (int j = 2; j <= n; j++) {
-            for (int i = 1; i <= (n - j + 1); i++) {
-                for (int k = 1; k <= (j - 1); k++) {
+        String combinaciones = "";
+        for (int j = 1; j < n; j++) {
+            for (int i = 0; i < (n - j); i++) {
+                tabla[i][j] = "";
 
+                for (int k = 0; k <= (j - 1); k++) {
+
+                    String totalVertical = tabla[i][k];
+                    String totalDiagonal = tabla[i + k + 1][j - k - 1];
+                    for (int indice = 0; indice < totalVertical.length(); indice++) {
+                        for (int indice2 = 0; indice2 < totalDiagonal.length(); indice2++) {
+                            combinaciones = totalVertical.charAt(indice) + "" + totalDiagonal.charAt(indice2);
+
+                            for (char noTerminal : this.conjuntoNoTerminales) {
+                                if (this.producciones.get(noTerminal).contains(combinaciones)) {
+                                    casilla = casilla + noTerminal;
+                                }
+                            }
+                            combinaciones = "";
+                        }
+                    }
                 }
+                tabla[i][j] = casilla;
+                casilla = "";
             }
         }
 
+        CharSequence axiomaFinal = this.axioma.toString();
+        if (tabla[0][word.length() - 1].contains(axiomaFinal)) {
+            resultado = true;
+        }
+
+        return resultado;
     }
 
     @Override
