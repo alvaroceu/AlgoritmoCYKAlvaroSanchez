@@ -165,7 +165,15 @@ public class CYKAlgorithm implements CYKAlgorithmInterface {
      * gramática es vacía o si el autómata carece de axioma.
      */
     public boolean isDerived(String word) throws CYKAlgorithmException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if ((this.producciones.isEmpty()) || (this.axioma == null)) {
+            throw new CYKAlgorithmException();
+        }
+        for (int indice = 0; indice < word.length(); indice++) {
+            if ((!this.conjuntoTerminales.contains(word.charAt(indice))) || Character.isUpperCase(word.charAt(indice))) {
+                throw new CYKAlgorithmException();
+            }
+        }
+
     }
 
     @Override
