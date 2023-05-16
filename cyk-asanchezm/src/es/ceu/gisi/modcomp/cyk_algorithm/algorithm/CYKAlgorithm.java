@@ -133,6 +133,13 @@ public class CYKAlgorithm implements CYKAlgorithmInterface {
                 throw new CYKAlgorithmException();
             }
             if (this.producciones.containsKey(nonterminal)) {
+
+                for (String produccion : this.producciones.get(nonterminal)) {
+                    if (produccion == production) {
+                        throw new CYKAlgorithmException();
+                    }
+                }
+
                 this.producciones.get(nonterminal).add(production);
             } else {
                 this.producciones.put(nonterminal, new ArrayList());
