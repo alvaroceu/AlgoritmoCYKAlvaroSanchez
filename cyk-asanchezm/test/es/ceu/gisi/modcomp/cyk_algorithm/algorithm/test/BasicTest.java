@@ -419,4 +419,35 @@ public class BasicTest {
 
         assertFalse(cyk.isDerived("bbb"));
     }
+
+    ////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    //TESTS PROPIOS//
+    ////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    @Test
+    public void comprobarDerivacionPropia1() throws CYKAlgorithmException {
+
+        cyk = new CYKAlgorithm();
+
+        cyk.addNonTerminal('A');
+        cyk.addNonTerminal('B');
+        cyk.addNonTerminal('C');
+
+        cyk.addTerminal('a');
+        cyk.addTerminal('b');
+
+        cyk.setStartSymbol('A');
+
+        cyk.addProduction('A', "BC");
+
+        cyk.addProduction('B', "CA");
+        cyk.addProduction('B', "a");
+
+        cyk.addProduction('C', "AB");
+        cyk.addProduction('C', "b");
+
+        assertTrue(cyk.isDerived("aaba"));
+        assertFalse(cyk.isDerived("aabb"));
+    }
 }
