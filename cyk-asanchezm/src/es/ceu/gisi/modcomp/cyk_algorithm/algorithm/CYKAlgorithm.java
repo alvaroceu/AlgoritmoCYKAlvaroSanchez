@@ -174,6 +174,19 @@ public class CYKAlgorithm implements CYKAlgorithmInterface {
             }
         }
 
+        int n = word.length();
+        for (int i = 1; i <= n; i++) {
+
+        }
+
+        for (int j = 2; j <= n; j++) {
+            for (int i = 1; i <= (n - j + 1); i++) {
+                for (int k = 1; k <= (j - 1); k++) {
+
+                }
+            }
+        }
+
     }
 
     @Override
