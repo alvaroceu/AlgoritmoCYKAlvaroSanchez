@@ -4,6 +4,7 @@ import es.ceu.gisi.modcomp.cyk_algorithm.algorithm.exceptions.CYKAlgorithmExcept
 import es.ceu.gisi.modcomp.cyk_algorithm.algorithm.interfaces.CYKAlgorithmInterface;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Esta clase contiene la implementación de la interfaz CYKAlgorithmInterface
@@ -18,6 +19,17 @@ public class CYKAlgorithm implements CYKAlgorithmInterface {
     private ArrayList<Character> conjuntoTerminales;
     private Character axioma;
     private Map<Character, ArrayList<String>> producciones;
+
+    /**
+     * Constructor de CYKAlgorithm que inicializa los juntos de elementos y
+     * producciones
+     */
+    public CYKAlgorithm() {
+        this.axioma = null;
+        this.conjuntoNoTerminales = new ArrayList();
+        this.conjuntoTerminales = new ArrayList();
+        this.producciones = new TreeMap< Character, ArrayList<String>>();
+    }
 
     @Override
     /**
