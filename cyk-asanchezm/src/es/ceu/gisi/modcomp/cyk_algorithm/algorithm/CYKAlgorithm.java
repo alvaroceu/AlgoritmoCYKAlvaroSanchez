@@ -97,10 +97,17 @@ public class CYKAlgorithm implements CYKAlgorithmInterface {
         }
         if (production.length() == 1) {
 
-            if (!this.conjuntoTerminales.contains(production.charAt(1))) {
+            if (!this.conjuntoTerminales.contains(production.charAt(0))) {
                 throw new CYKAlgorithmException();
             }
             if (this.producciones.containsKey(nonterminal)) {
+
+                for (String produccion : this.producciones.get(nonterminal)) {
+                    if (produccion == production) {
+                        throw new CYKAlgorithmException();
+                    }
+                }
+
                 this.producciones.get(nonterminal).add(production);
             } else {
                 this.producciones.put(nonterminal, new ArrayList());
@@ -109,8 +116,8 @@ public class CYKAlgorithm implements CYKAlgorithmInterface {
 
         } else if (production.length() == 2) {
 
-            char letra1 = production.charAt(1);
-            char letra2 = production.charAt(2);
+            char letra1 = production.charAt(0);
+            char letra2 = production.charAt(1);
             if ((!this.conjuntoNoTerminales.contains(letra1)) || (!this.conjuntoNoTerminales.contains(letra2))) {
                 throw new CYKAlgorithmException();
             }
