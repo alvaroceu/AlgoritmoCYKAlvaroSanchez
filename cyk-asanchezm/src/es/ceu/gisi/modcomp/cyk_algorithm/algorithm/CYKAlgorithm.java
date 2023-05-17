@@ -19,6 +19,7 @@ public class CYKAlgorithm implements CYKAlgorithmInterface {
     private ArrayList<Character> conjuntoTerminales;
     private Character axioma;
     private Map<Character, ArrayList<String>> producciones;
+    private ArrayList<String> casillasGeneradas;
 
     /**
      * Constructor de CYKAlgorithm que inicializa los juntos de elementos y
@@ -29,6 +30,7 @@ public class CYKAlgorithm implements CYKAlgorithmInterface {
         this.conjuntoNoTerminales = new ArrayList();
         this.conjuntoTerminales = new ArrayList();
         this.producciones = new TreeMap< Character, ArrayList<String>>();
+        this.casillasGeneradas = new ArrayList();
     }
 
     @Override
@@ -165,6 +167,9 @@ public class CYKAlgorithm implements CYKAlgorithmInterface {
      * gramática es vacía o si el autómata carece de axioma.
      */
     public boolean isDerived(String word) throws CYKAlgorithmException {
+
+        this.casillasGeneradas.clear();
+
         if ((this.producciones.isEmpty()) || (this.axioma == null)) {
             throw new CYKAlgorithmException();
         }
@@ -188,6 +193,7 @@ public class CYKAlgorithm implements CYKAlgorithmInterface {
             }
 
             tabla[i][0] = casilla;
+            this.casillasGeneradas.add(casilla);
             casilla = "";
         }
 
@@ -214,6 +220,7 @@ public class CYKAlgorithm implements CYKAlgorithmInterface {
                     }
                 }
                 tabla[i][j] = casilla;
+                this.casillasGeneradas.add(casilla);
                 casilla = "";
             }
         }
@@ -243,7 +250,19 @@ public class CYKAlgorithm implements CYKAlgorithmInterface {
      * gramática es vacía o si el autómata carece de axioma.
      */
     public String algorithmStateToString(String word) throws CYKAlgorithmException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        isDerived(word);
+
+        String cadenaResultado = "";
+        int indiceString = 0;
+        for (int longitud = word.length(); longitud > 0; longitud--) {
+            for (int indice = 1; indice <= longitud; indice++) {
+                cadenaResultado = cadenaResultado + this.casillasGeneradas.get(indiceString) + "\t";
+                indiceString++;
+            }
+            cadenaResultado = cadenaResultado + "\n";
+        }
+
+        return cadenaResultado;
     }
 
     @Override
