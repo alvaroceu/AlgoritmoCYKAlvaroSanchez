@@ -23,7 +23,7 @@ public class CYKAlgorithm implements CYKAlgorithmInterface {
 
     /**
      * Constructor de CYKAlgorithm que inicializa los juntos de elementos y
-     * producciones
+     * producciones.
      */
     public CYKAlgorithm() {
         this.axioma = null;
