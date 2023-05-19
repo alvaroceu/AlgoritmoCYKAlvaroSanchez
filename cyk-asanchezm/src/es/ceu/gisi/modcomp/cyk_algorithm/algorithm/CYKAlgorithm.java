@@ -212,7 +212,13 @@ public class CYKAlgorithm implements CYKAlgorithmInterface {
 
                             for (char noTerminal : this.conjuntoNoTerminales) {
                                 if (this.producciones.get(noTerminal).contains(combinaciones)) {
-                                    casilla = casilla + noTerminal;
+
+                                    CharSequence elementoNoTerminal = noTerminal + "";
+                                    if (casilla.contains(elementoNoTerminal)) {
+                                    } else {
+                                        casilla = casilla + noTerminal;
+                                    }
+
                                 }
                             }
                             combinaciones = "";
